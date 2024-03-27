@@ -14,7 +14,7 @@
 Mostly just to make sure you each have access and can pull and push to the repo, add your name here:
 1. Daniel
 1. Dylan
-1. MeName
+1. Mateen Faieq
 1. MineName
 
 ## Scaffolding
