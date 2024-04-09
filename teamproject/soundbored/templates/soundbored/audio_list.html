@@ -11,9 +11,15 @@
             border-radius: 50%;
         }
         .delete-button {
-        color: red;
-        font-weight: bold;
-        text-decoration: none; /* Removes the underline from the link */
+            color: red;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .favorite-button {
+            color: pink;
+            font-weight: bold;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -23,9 +29,11 @@
         <div>
             <h2>{{ audio.title }}</h2>
             <!-- Apply the "audio-image" class to your image -->
+           
+            <a href="{% url 'delete_audio' audio.id %}" class="delete-button" onclick="return confirm('Are you sure?');">✖</a>
             <img src="{{ audio.image.url }}" alt="{{ audio.title }}" class="audio-image" onclick="togglePlay('audio{{ audio.pk }}')">
             <audio id="audio{{ audio.pk }}" src="{{ audio.audio_file.url }}" preload="none"></audio>
-            <a href="{% url 'delete_audio' audio.id %}" class="delete-button" onclick="return confirm('Are you sure?');">✖</a>
+            <a href="" class="favorite-button" onclick="return confirm('Add to favorites?');">❤</a>
         </div>
     {% endfor %}
     <a href="{% url 'audio_upload' %}">Click here to upload</a>
