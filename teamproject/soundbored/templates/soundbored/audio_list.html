@@ -2,34 +2,14 @@
 <html>
 <head>
     <title>Audio List</title>
-    <style>
-        .audio-image {
-            width: 100px;  /* Set the width to your desired size */
-            height: 100px; /* Set the height to your desired size */
-            object-fit: cover; /* This makes sure the image covers the area, may crop */
-            cursor: pointer; /* Changes the cursor to indicate it's clickable */
-            border-radius: 50%;
-        }
-        .delete-button {
-            color: red;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .favorite-button {
-            color: pink;
-            font-weight: bold;
-            text-decoration: none;
-        }
-    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'soundbored/styles.css' %}">
 </head>
-<body>
+<body class="all">
     <h1>Uploaded Audio Files</h1>
     {% for audio in audios %}
         <div>
-            <h2>{{ audio.title }}</h2>
-            <!-- Apply the "audio-image" class to your image -->
-           
+            <h2>{{ audio.title }}</h2>  
             <a href="{% url 'delete_audio' audio.id %}" class="delete-button" onclick="return confirm('Are you sure?');">✖</a>
             <img src="{{ audio.image.url }}" alt="{{ audio.title }}" class="audio-image" onclick="togglePlay('audio{{ audio.pk }}')">
             <audio id="audio{{ audio.pk }}" src="{{ audio.audio_file.url }}" preload="none"></audio>
