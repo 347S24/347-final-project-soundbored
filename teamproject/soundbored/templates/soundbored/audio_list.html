@@ -2,18 +2,48 @@
 <html>
 <head>
     <title>Audio List</title>
+    <style>
+        .audio-image {
+            width: 100px;  /* Set the width to your desired size */
+            height: 100px; /* Set the height to your desired size */
+            object-fit: cover; /* This makes sure the image covers the area, may crop */
+            cursor: pointer; /* Changes the cursor to indicate it's clickable */
+            border-radius: 50%;
+        }
+        .delete-button {
+        color: red;
+        font-weight: bold;
+        text-decoration: none; /* Removes the underline from the link */
+        }
+    </style>
 </head>
 <body>
     <h1>Uploaded Audio Files</h1>
     {% for audio in audios %}
         <div>
             <h2>{{ audio.title }}</h2>
-            <audio controls>
-                <source src="{{ audio.audio_file.url }}" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
+            <!-- Apply the "audio-image" class to your image -->
+            <img src="{{ audio.image.url }}" alt="{{ audio.title }}" class="audio-image" onclick="togglePlay('audio{{ audio.pk }}')">
+            <audio id="audio{{ audio.pk }}" src="{{ audio.audio_file.url }}" preload="none"></audio>
+            <a href="{% url 'delete_audio' audio.id %}" class="delete-button" onclick="return confirm('Are you sure?');">✖</a>
         </div>
     {% endfor %}
     <a href="{% url 'audio_upload' %}">Click here to upload</a>
+
+    <script>
+        // Function to toggle play/pause
+        function togglePlay(audioId) {
+            var audio = document.getElementById(audioId);
+            if (audio) {
+                if (audio.paused) {
+                    audio.play();
+                } else {
+                    audio.pause();
+                    audio.currentTime = 0;
+                }
+            }
+        }
+        </script>
 </body>
 </html>
+
