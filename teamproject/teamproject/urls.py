@@ -24,4 +24,5 @@ urlpatterns = [
     # Include your app's URLs. Adjust the path as needed.
     path('audio/', include('soundbored.urls')),  # This line includes `soundbored`'s URLs under `/audio/`
     # If you want `soundbored`'s URLs to be at the root, use path('', include('soundbored.urls')),
+    path('', include('soundbored.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
