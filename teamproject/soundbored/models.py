@@ -6,3 +6,4 @@ class Audio(models.Model):
     audio_file = models.FileField(upload_to='audios/', validators=[FileExtensionValidator(allowed_extensions=['mp3'])])
     image = models.ImageField(upload_to='images/', default='images/defaultpic.jpeg')
     uploaded_at = models.DateTimeField(auto_now_add=True)
+    is_favorite = models.BooleanField(default=False)

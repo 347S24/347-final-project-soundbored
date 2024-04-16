@@ -23,3 +23,10 @@ def delete_audio(request, audio_id):
     audio = get_object_or_404(Audio, pk=audio_id)
     audio.delete()  # Delete the audio object
     return redirect('audio_list')  # Redirect to the audio list page
+
+def add_favorite(request, audio_id):
+    # Get the audio object, and if it doesn't exist, return a 404 error
+    audio = get_object_or_404(Audio, pk=audio_id)
+    audio.is_favorite = not audio.is_favorite  # Toggle the favorite status
+    audio.save() 
+    return redirect('audio_list')  # Redirect to the audio list page
