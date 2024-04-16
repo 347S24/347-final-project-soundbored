@@ -1,3 +1,9 @@
+.main-content-container {
+    width: 20%;
+    min-height: 100vh;
+    padding: 20px;
+    height: 100vh;
+}
 
 .audio-image {
     width: 100px; 
