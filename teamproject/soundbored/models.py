@@ -7,3 +7,6 @@ class Audio(models.Model):
     image = models.ImageField(upload_to='images/', default='images/defaultpic.jpeg')
     uploaded_at = models.DateTimeField(auto_now_add=True)
     is_favorite = models.BooleanField(default=False)
+
+class SoundBoard(models.Model):
+    title = models.CharField(max_length=255)

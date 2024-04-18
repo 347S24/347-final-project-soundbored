@@ -34,6 +34,9 @@ def audio_list_view(request):
     audios = Audio.objects.all()
     return render(request, 'soundbored/audio_list.html', {'audios': audios, 'logged_in': request.user.is_authenticated})
 
+def soundboard_view(request):
+    audios = Audio.objects.all()
+    return render(request, 'soundbored/soundboard.html', {'audios': audios, 'logged_in': request.user.is_authenticated})
 
 # Upload veiw
 @login_required
