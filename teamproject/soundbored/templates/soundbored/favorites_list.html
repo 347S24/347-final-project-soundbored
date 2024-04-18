@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Favorites</title>
+</head>
+<body>
+    <h1>My Favorites</h1>
+    {% for audio in favorites %}
+    <div>
+        <h2>{{ audio.title }}</h2>
+        <img src="{{ audio.image.url }}" alt="{{ audio.title }}">
+        <audio controls>
+            <source src="{{ audio.audio_file.url }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    {% endfor %}
+</body>
+</html>

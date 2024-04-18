@@ -51,6 +51,21 @@ def audio_upload_view(request):
         form = AudioForm()
     return render(request, 'soundbored/audio_upload.html', {'form': form})
 
+# Favorites
+@login_required
+def toggle_favorite(request, audio_id):
+    audio = get_object_or_404(Audio, pk=audio_id)
+    if request.user in audio.favorites.all():
+        audio.favorites.remove(request.user)
+    else:
+        audio.favorites.add(request.user)
+    return redirect('audio_list')
+
+# Favorites View
+@login_required
+def list_favorites(request):
+    user_favorites = request.user.favorite_audios.all()
+    return render(request, 'soundbored/favorites_list.html', {'favorites': user_favorites})
 
 def delete_audio(request, audio_id):
     # Get the audio object, and if it doesn't exist, return a 404 error
