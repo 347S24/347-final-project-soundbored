@@ -22,7 +22,7 @@
               <div style="flex-direction: column; justify-content: space-between;">
                 <ul class="navbar-nav flex-column">
                     <li class="nav-item">
-                      <a class="nav-link" href="">Home</a>
+                      <a class="nav-link" href="{% url 'audio_list' %}">Home</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="">My Sound Bored's</a>
@@ -36,7 +36,7 @@
                     <li class="nav-item">
                       <a class="nav-link" href="">Settings</a>
                     </li>
-                    {% if logged_in %}
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
                       <a href="{% url 'logout' %}" class="nav-link" style="color: #FF0000;">Logout</a>
                     </li>
