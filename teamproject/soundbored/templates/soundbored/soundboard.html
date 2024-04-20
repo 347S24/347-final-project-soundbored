@@ -1,1 +1,15 @@
-<p>test view</p>
+{% extends "soundbored/base_template.html" %}
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    <title>My Soundboards</title>
+</head>
+
+{% block content %}
+  <!-- Main content -->
+  
+  <div class="flex-container m-3" style="width: 80vw;">
+    <h1>My soundboards</h1>
+  </div>
+{% endblock content %}

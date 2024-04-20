@@ -1,17 +1,21 @@
+{% extends "soundbored/base_template.html" %}
+{% load static %}
+
 <!DOCTYPE html>
-<html>
 <head>
     <title>Upload MP3</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'soundbored/styles.css' %}">
 </head>
-<body class="all">
+
+{% block content %}
+  <div class="flex-container m-3" style="width: 80vw;">
     <h1>Upload MP3 File</h1>
+    
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Upload</button>
     </form>
     <a href="{% url 'audio_list' %}">Back to home</a>
-</body>
-</html>
+    
+  </div>
+{% endblock content %}
