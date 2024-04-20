@@ -3,6 +3,8 @@ from .forms import AudioForm
 from .models import Audio
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse
+from .forms import NewUserForm
 
 
 # Login Veiw for user authentication
@@ -38,7 +40,7 @@ def soundboard_view(request):
     audios = Audio.objects.all()
     return render(request, 'soundbored/soundboard.html', {'audios': audios, 'logged_in': request.user.is_authenticated})
 
-# Upload veiw
+# Upload view
 @login_required
 def audio_upload_view(request):
     if request.method == 'POST':
@@ -80,3 +82,16 @@ def add_favorite(request, audio_id):
     audio.is_favorite = not audio.is_favorite  # Toggle the favorite status
     audio.save()
     return redirect('audio_list')  # Redirect to the audio list page
+
+def register_view(request):
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            # If you want to log the user in and redirect to a new page:
+            # login(request, user)
+            # redirect to the desired page
+            return redirect(reverse('login'))  # Redirect them to login page
+    else:
+        form = NewUserForm()
+    return render(request, 'soundbored/register.html', {"form": form})

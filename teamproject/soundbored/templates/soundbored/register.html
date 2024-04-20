@@ -1,0 +1,18 @@
+{% extends 'soundbored/base_template.html' %}
+
+<!DOCTYPE html>
+
+<head>
+    <title>SoundBored Registration</title>
+</head>
+
+{% block content %}
+<div class="flex-container m-3" style="width: 80vw;">
+<h2>Register</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Register</button>
+</form>
+</div>
+{% endblock %}
