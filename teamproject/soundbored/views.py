@@ -36,11 +36,14 @@ def audio_list_view(request):
     audios = Audio.objects.all()
     return render(request, 'soundbored/audio_list.html', {'audios': audios, 'logged_in': request.user.is_authenticated})
 
+
 def soundboard_view(request):
     audios = Audio.objects.all()
     return render(request, 'soundbored/soundboard.html', {'audios': audios, 'logged_in': request.user.is_authenticated})
 
 # Upload view
+
+
 @login_required
 def audio_upload_view(request):
     if request.method == 'POST':
@@ -54,6 +57,8 @@ def audio_upload_view(request):
     return render(request, 'soundbored/audio_upload.html', {'form': form})
 
 # Favorites
+
+
 @login_required
 def toggle_favorite(request, audio_id):
     audio = get_object_or_404(Audio, pk=audio_id)
@@ -64,10 +69,13 @@ def toggle_favorite(request, audio_id):
     return redirect('audio_list')
 
 # Favorites View
+
+
 @login_required
 def list_favorites(request):
     user_favorites = request.user.favorite_audios.all()
     return render(request, 'soundbored/favorites_list.html', {'favorites': user_favorites})
+
 
 def delete_audio(request, audio_id):
     # Get the audio object, and if it doesn't exist, return a 404 error
@@ -83,11 +91,12 @@ def add_favorite(request, audio_id):
     audio.save()
     return redirect('audio_list')  # Redirect to the audio list page
 
+
 def register_view(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            form.save()
             # If you want to log the user in and redirect to a new page:
             # login(request, user)
             # redirect to the desired page

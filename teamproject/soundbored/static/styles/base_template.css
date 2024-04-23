@@ -1,0 +1,63 @@
+.nav-container {
+  height: 100vh;
+  background-color:#d5cfbe;
+  border-radius: 0px;
+  background-clip: content-box;
+  border-right: 1px solid black; 
+  border-bottom: 1px solid black;
+  color: black;
+}
+.nav-button {
+  background-color:#d5cfbe;
+  border-color:#d5cfbe;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.nav-item-custom {
+  margin-top: 8px;
+  margin-bottom: 4px;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  border-radius: 2px;
+}
+.nav-link-custom {
+  font-size: large;
+}
+
+.right-columns {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+.right-columns .column1 {
+  width: 12px;
+  background-color: #e5d603;
+}
+.right-columns .column2 {
+  width: 11px;
+  background-color: #db453a;
+}
+.right-columns .column3 {
+  width: 13px;
+  background-color: #a14b99;
+}
+.right-columns .column4 {
+  width: 10px;
+  background-color: #009e8a;
+}
+
+.font-title {
+  font-family: "Jersey 10", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.font-sound-title {
+  font-family: "Signika Negative", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
