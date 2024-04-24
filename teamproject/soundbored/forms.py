@@ -8,6 +8,11 @@ class AudioForm(forms.ModelForm):
     class Meta:
         model = Audio
         fields = ['title', 'audio_file', 'image']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-input', 'placeholder': 'Title'}),
+            'audio_file': forms.FileInput(attrs={'class': 'audio-button'}),
+            'image': forms.FileInput(attrs={'class': 'audio-button'}),
+        }
 
 
 class NewUserForm(UserCreationForm):
