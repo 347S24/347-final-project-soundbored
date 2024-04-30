@@ -8,6 +8,7 @@ class Audio(models.Model):
     image = models.ImageField(upload_to='images/', default='images/defaultpic.png')
     uploaded_at = models.DateTimeField(auto_now_add=True)
     favorites = models.ManyToManyField(User, related_name='favorite_audios')
+    uploader = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name='uploaded_audios')
 
 class SoundBoard(models.Model):
     title = models.CharField(max_length=255)

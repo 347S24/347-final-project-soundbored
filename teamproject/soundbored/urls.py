@@ -10,5 +10,6 @@ urlpatterns = [
     path('favorite/<int:audio_id>/', views.toggle_favorite, name='toggle_favorite'),
     path('favorites/', views.list_favorites, name='list_favorites'),
     path('soundboard/', views.soundboard_view, name='soundboard_view'),
-    (path('register/', views.register_view, name='register'))
+    path('register/', views.register_view, name='register'),
+    path('my-sounds/', views.my_sounds_view, name='my_sounds'),
 ]

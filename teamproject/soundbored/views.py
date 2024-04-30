@@ -49,9 +49,10 @@ def audio_upload_view(request):
     if request.method == 'POST':
         form = AudioForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            # Redirect to the audio list view after successful upload
-            return redirect('audio_list')
+            audio = form.save(commit=False)
+            audio.uploader = request.user  # Set the uploader to the current user
+            audio.save()
+            return redirect('my_sounds')  # Redirect to 'My Sounds' view after upload
     else:
         form = AudioForm()
     return render(request, 'soundbored/audio_upload.html', {'form': form})
@@ -68,6 +69,14 @@ def toggle_favorite(request, audio_id):
         audio.favorites.add(request.user)
     return redirect('audio_list')
 
+# My Sounds View
+@login_required
+def my_sounds_view(request):
+    user_audios = request.user.uploaded_audios.all()  # Fetch audios uploaded by the user
+    return render(request, 'soundbored/my_sounds.html', {'audios': user_audios})
+
+
+
 # Favorites View
 
 
@@ -81,7 +90,7 @@ def delete_audio(request, audio_id):
     # Get the audio object, and if it doesn't exist, return a 404 error
     audio = get_object_or_404(Audio, pk=audio_id)
     audio.delete()  # Delete the audio object
-    return redirect('audio_list')  # Redirect to the audio list page
+    return redirect('my_sounds')  # Redirect to the audio list page
 
 
 def add_favorite(request, audio_id):
