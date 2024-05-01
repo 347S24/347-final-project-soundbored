@@ -2,18 +2,18 @@
 {% load static %}
 
 {% block content %}
-<div>
-    <h1>My Sounds</h1>
-    {% for audio in audios %}
-    <div>
-        <h2>{{ audio.title }}</h2>
-        <audio controls>
-            <source src="{{ audio.audio_file.url }}" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-        <a href="{% url 'delete_audio' audio.id %}" class="delete-button" onclick="return confirm('Are you sure?');">✖</a>
-        <!-- Additional management options can be added here -->
+    <div class="flex-container p-3" style="width: 100vw; background-color: #ddddc6; color: #1d1e2c;">
+        <h1 class="font-title">My Sounds</h1>
+        {% for audio in audios %}
+        <div>
+            <h2>{{ audio.title }}</h2>
+            <audio controls>
+                <source src="{{ audio.audio_file.url }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <a href="{% url 'delete_audio' audio.id %}" class="delete-button" onclick="return confirm('Are you sure?');">✖</a>
+            <!-- Additional management options can be added here -->
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 {% endblock %}
