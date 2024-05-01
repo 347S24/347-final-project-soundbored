@@ -1,0 +1,30 @@
+{% extends "soundbored/base_template.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="flex-container p-3" style="width: 100vw; background-color: #ddddc6; color: #1d1e2c;">
+    <h1 class="font-title title">Upload a New Sound-Bored</h1>
+    <form id="soundboard-form" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-group pb-3">
+        {{ form.title }}
+      </div>
+      <p class="font-title" style="font-size: 30px;">Choose Your Sounds</p>
+      <div class="row" style="width: 40%;">
+        {% for audio_field in form.audios %}
+        {{ audio_field }}
+        {% endfor %}
+        {% for audio in audios %}
+        <div class="col-lg-4 col-md-6 text-center">
+          <div class="img-container" style="background-image: url('{% static 'src/floppy.png' %}');">
+            <img src="{{ audio.image.url }}" alt="{{ audio.title }}" class="audio-image">
+          </div>
+          <audio id="audio{{ audio.pk }}" src="{{ audio.audio_file.url }}" preload="none"></audio>
+          <div class="font-sound-title">{{ audio.title }}</div>
+        </div>
+        {% endfor %}
+      </div>
+      <button class="sub-button" type="submit">Upload</button>
+    </form>
+  </div>
+{% endblock content %}

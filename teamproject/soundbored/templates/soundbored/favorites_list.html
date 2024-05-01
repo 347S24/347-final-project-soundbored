@@ -8,15 +8,11 @@
 
 {% block content %}
     <div class="flex-container p-3" style="width: 100vw; background-color: #ddddc6; color: #1d1e2c;">
-    <h1 class="font-title">My Favorites</h1>
+    <h1 class="font-title title">{{user}}'s Favorites</h1>
         <div class ="row">
-        {% for audio in favorites %}
-            <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center">
-            <h2>{{ audio.title }}</h2>
-            <img src="{{ audio.image.url }}" alt="{{ audio.title }}" class="audio-image" onclick="togglePlay('audio{{ audio.pk }}')">
-            <audio id="audio{{ audio.pk }}" src="{{ audio.audio_file.url }}" preload="none"></audio>
-            </div>
-        {% endfor %}
+          {% for audio in favorites %}
+            {% include 'includes/audio_button.html' %}
+          {% endfor %}
         </div>
       </div>
 {% endblock content %}

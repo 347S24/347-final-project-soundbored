@@ -32,22 +32,33 @@
   cursor: pointer
 }
 
+.img-container {
+  position: relative;
+  display: inline-block;
+  background-size: cover;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  cursor: pointer
+}
+
 .delete-button {
   position: relative;
-  top: -10px;
-  right: -10px;
+  right: -50px;
+  top: 2px;
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 50%;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1;
+  z-index: 1;
 }
 .delete-button:hover {
   background-color: #d32f2f;
 }
 
 .favorite-button {
-  color: pink;
+  color: red;
   font-weight: bold;
   text-decoration: none;
 }

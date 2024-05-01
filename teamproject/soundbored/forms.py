@@ -1,5 +1,5 @@
 from django import forms
-from .models import Audio
+from .models import Audio, SoundBoard
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -13,6 +13,15 @@ class AudioForm(forms.ModelForm):
             'audio_file': forms.FileInput(attrs={'class': 'audio-button'}),
             'image': forms.FileInput(attrs={'class': 'audio-button'}),
         }
+
+
+class SoundBoardForm(forms.Form):
+    title = forms.CharField(max_length=200)
+    audios = forms.ModelMultipleChoiceField(
+        queryset=Audio.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
 
 
 class NewUserForm(UserCreationForm):

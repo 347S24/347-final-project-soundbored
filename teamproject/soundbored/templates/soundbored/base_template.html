@@ -4,6 +4,7 @@
     <title>Sound-Bored</title>
     {% block head %}
     {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'src/icons/floppy.ico' %}">
     <script src="{% static 'scripts/audio.js' %}"></script>
     <link rel="stylesheet" href="{% static 'styles/base_template.css' %}">
     <link rel="stylesheet" href="{% static 'styles/audio_list.css' %}">
@@ -35,6 +36,9 @@
                     <a class="nav-link nav-link-custom" href="{% url 'audio_list' %}">Home</a>
                 </li>
                 <li class="nav-item nav-item-custom">
+                  <a class="nav-link nav-link-custom" href="{% url 'my_sounds' %}">My Sounds</a>
+                </li>
+                <li class="nav-item nav-item-custom">
                 <a class="nav-link nav-link-custom" href="{% url 'soundboard_view' %}">My Sound Bored's</a>
                 </li>
                 <li class="nav-item nav-item-custom">
@@ -50,9 +54,6 @@
                   {% else %}
                     <a class="nav-link nav-link-custom" href="{% url 'login' %}">Upload Sounds</a>
                   {% endif %}
-                </li>
-                <li class="nav-item nav-item-custom">
-                    <a class="nav-link nav-link-custom" href="{% url 'my_sounds' %}">My Sounds</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item nav-item-custom">
