@@ -1,5 +1,5 @@
 .nav-container {
-  height: 100%;
+  min-height: 100vh;
   background-color:#d5cfbe;
   border-radius: 0px;
   background-clip: content-box;
@@ -31,7 +31,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  height: 100%;
+  min-height: 100vh;
 }
 
 .right-columns .column1 {
@@ -60,4 +60,32 @@
   font-family: "Signika Negative", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+}
+
+/* Small screens (up to 767px) */
+@media (max-width: 767px) {
+  .column-container {
+    width: 100%;
+  }
+}
+
+/* Medium screens (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .column-container {
+    width: 70%;
+  }
+}
+
+/* Large screens (992px to 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .column-container {
+    width: 40%;
+  }
+}
+
+/* Extra large screens (1200px and up) */
+@media (min-width: 1200px) {
+  .column-container {
+    width: 20%;
+  }
 }

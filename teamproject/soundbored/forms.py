@@ -37,6 +37,7 @@ class NewUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ("username", "email", "password1", "password2")
-        
+
+
 class EmailForm(forms.Form):
     email = forms.EmailField(label='Enter your email')

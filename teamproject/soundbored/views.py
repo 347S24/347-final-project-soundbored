@@ -9,6 +9,7 @@ from .forms import EmailForm
 from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
+from django import template
 
 
 # Login Veiw for user authentication
@@ -60,7 +61,7 @@ def soundboard_view(request):
 
 
 # Upload view
-@login_required
+@ login_required
 def audio_upload_view(request):
     if request.method == 'POST':
         form = AudioForm(request.POST, request.FILES)
@@ -76,7 +77,7 @@ def audio_upload_view(request):
 
 
 # Favorites
-@login_required
+@ login_required
 def toggle_favorite(request, audio_id):
     audio = get_object_or_404(Audio, pk=audio_id)
     if request.user in audio.favorites.all():
@@ -88,7 +89,7 @@ def toggle_favorite(request, audio_id):
 
 
 # My Sounds View
-@login_required
+@ login_required
 def my_sounds_view(request):
     # Fetch audios uploaded by the user
     user_audios = request.user.uploaded_audios.all()
@@ -96,7 +97,7 @@ def my_sounds_view(request):
 
 
 # Favorites View
-@login_required
+@ login_required
 def list_favorites(request):
     user_favorites = request.user.favorite_audios.all()
     return render(request, 'soundbored/favorites_list.html', {'favorites': user_favorites})
@@ -141,7 +142,7 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     email_template_name = 'soundbored/password_reset_email.html'
     subject_template_name = 'soundbored/password_reset_subject.txt'
     success_message = "We've emailed you instructions for setting your password, " \
-                      "if an account exists with the email you entered. You should receive them shortly." \
-                      " If you don't receive an email, " \
+        "if an account exists with the email you entered. You should receive them shortly." \
+        " If you don't receive an email, " \
                       "please make sure you've entered the address you registered with, and check your spam folder."
     success_url = reverse_lazy('password_reset')
