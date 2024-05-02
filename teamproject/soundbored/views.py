@@ -77,7 +77,6 @@ def my_soundboards_view(request):
     return render(request, 'soundbored/my_soundboards.html', {'soundboards': soundboards})
 
 
-@login_required
 def soundboard_view(request, pk=None):
     if pk:
         soundboard = get_object_or_404(SoundBoard, pk=pk)
