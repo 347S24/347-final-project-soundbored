@@ -14,9 +14,7 @@ class Audio(models.Model):
     uploader = models.ForeignKey(
         User, null=True, on_delete=models.CASCADE, related_name='uploaded_audios')
 
-
 class SoundBoard(models.Model):
     title = models.CharField(max_length=255)
-    owner = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='soundboard')
-    audios = models.ManyToManyField(Audio, related_name='audios')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='soundboards', null=True)
+    audios = models.ManyToManyField(Audio, related_name='included_in_soundboards')

@@ -1,17 +1,15 @@
 {% extends "soundbored/base_template.html" %}
-{% load static %}
-<!DOCTYPE html>
-
 {% block content %}
-  <div class="flex-container p-3" style="width: 100vw; background-color: #ddddc6; color: #1d1e2c;">
-    <h1 class="font-title title">{{user}}'s Sound-Bored's</h1>
-      <a class="btn btn-primary" href="{% url 'soundboard_upload_view' %}">Upload A Sound-Bored</a>
-      <div class="row">
-        <h1 class="font-title">{{title}}</h1>
-        {% for audio in audios %}
-          {% include 'includes/audio_button.html' %}
+<body>
+    <div class="flex-container p-3" style="width: 100vw; background-color: #ddddc6; color: #1d1e2c;">
+        <h1 class="text-center font-title title">{{ soundboard.title }}</h1>
+    <div class = "row">
+        {% for audio in soundboard.audios.all %}
+            {% include 'includes/audio_button.html' %}
         {% endfor %}
-      </div>
     </div>
-  </div>
-{% endblock content %}
+    </div>
+</body>
+{% endblock %}
+
+

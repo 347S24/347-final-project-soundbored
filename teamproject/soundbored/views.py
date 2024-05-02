@@ -42,22 +42,78 @@ def audio_list_view(request):
     return render(request, 'soundbored/audio_list.html', {'audios': audios, 'logged_in': request.user.is_authenticated})
 
 
+
+
+
+
+
+
+
+
 # My Soundboards
 @login_required
 def soundboard_upload_view(request):
     if request.method == 'POST':
         form = SoundBoardForm(request.POST)
         if form.is_valid():
-            title = form.cleaned_data['title']
-            selected_audios = form.cleaned_data['audios']
-            return render(request, 'soundbored/soundboard.html', {'title': title, 'audios': selected_audios})
-    form = SoundBoardForm()
+            new_soundboard = SoundBoard(
+                title=form.cleaned_data['title'],
+                owner=request.user
+            )
+            new_soundboard.save()
+            new_soundboard.audios.set(form.cleaned_data['audios'])
+            new_soundboard.save()
+            # Redirect to the 'My Soundboards' view after successful upload
+            return redirect('my_soundboards')
+    else:
+        form = SoundBoardForm()
     audios = Audio.objects.all()
     return render(request, 'soundbored/soundboard_upload.html', {'form': form, 'audios': audios})
 
 
-def soundboard_view(request):
-    return render(request, 'soundbored/soundboard.html', {'logged_in': request.user.is_authenticated})
+@login_required
+def my_soundboards_view(request):
+    soundboards = SoundBoard.objects.filter(owner=request.user)
+    return render(request, 'soundbored/my_soundboards.html', {'soundboards': soundboards})
+
+
+@login_required
+def soundboard_view(request, pk=None):
+    if pk:
+        soundboard = get_object_or_404(SoundBoard, pk=pk)
+    else:
+        return redirect('my_soundboards')
+
+    return render(request, 'soundbored/soundboard.html', {'soundboard': soundboard})
+
+# used for refffffffrence 
+# @login_required
+# def soundboard_detail_view(request, pk):
+#     soundboard = get_object_or_404(SoundBoard, pk=pk, owner=request.user)  # Ensure ownership
+#     if request.method == 'POST':
+#         form = SoundBoardForm(request.POST, instance=soundboard)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('soundboard_detail', pk=soundboard.pk)
+#     else:
+#         form = SoundBoardForm(instance=soundboard)
+#     return render(request, 'soundbored/soundboard_detail.html', {'form': form, 'soundboard': soundboard})
+
+
+@login_required
+def delete_soundboard(request, pk):
+    soundboard = get_object_or_404(SoundBoard, pk=pk, owner=request.user)  # Ensures that only the owner can delete
+    soundboard.delete()
+    return redirect('my_soundboards')  # Redirects back to the list of soundboards
+
+
+
+
+
+
+
+
+
 
 
 # Upload view

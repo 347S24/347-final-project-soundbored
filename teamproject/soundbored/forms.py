@@ -15,13 +15,16 @@ class AudioForm(forms.ModelForm):
         }
 
 
-class SoundBoardForm(forms.Form):
-    title = forms.CharField(max_length=200)
+class SoundBoardForm(forms.ModelForm):
     audios = forms.ModelMultipleChoiceField(
         queryset=Audio.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
+
+    class Meta:
+        model = SoundBoard
+        fields = ['title', 'audios']
 
 
 class NewUserForm(UserCreationForm):
