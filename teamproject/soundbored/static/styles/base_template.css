@@ -1,5 +1,5 @@
 .nav-container {
-  min-height: 100vh;
+  min-height: 100%;
   background-color:#d5cfbe;
   border-radius: 0px;
   background-clip: content-box;
@@ -31,13 +31,14 @@
   position: absolute;
   top: 0;
   right: 0;
-  min-height: 100vh;
 }
 
 .right-columns .column1 {
   width: 12px;
   background-color: #e5d603;
+  border-bottom-left-radius: 30%;
 }
+
 .right-columns .column2 {
   width: 11px;
   background-color: #db453a;
