@@ -23,7 +23,7 @@
         <div class="col-6 text-center" style="">
           <!--Audio Images-->
           {% for audio in audios %}
-          <div class="img-container" style="background-image: url('{% static 'src/floppy.png' %}');">
+          <div class="img-container" style="background-image: url('{% static 'src/floppy.png' %}');" onclick="togglePlay('audio{{ audio.pk }}')">
             <img src="{{ audio.image.url }}" alt="{{ audio.title }}" class="audio-image">
           </div>
           <audio id="audio{{ audio.pk }}" src="{{ audio.audio_file.url }}" preload="none"></audio>
